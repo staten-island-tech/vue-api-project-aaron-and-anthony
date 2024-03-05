@@ -12,3 +12,8 @@ app.use(createPinia())
 app.use(router)
 
 app.mount('#app')
+
+const BASE_URL = 'https://data.cityofnewyork.us/resource/ykvb-493p.json'
+
+async function getData(URL) {
+}
