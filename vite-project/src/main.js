@@ -15,5 +15,9 @@ app.mount('#app')
 
 const BASE_URL = 'https://data.cityofnewyork.us/resource/ykvb-493p.json'
 
-async function getData(URL) {
+async function getData(BASE_URL) {
+    const response = await fetch(BASE_URL)
+    const data = await response.json();
+    console.log(data)
 }
+getData(BASE_URL)
