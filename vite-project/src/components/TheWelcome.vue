@@ -1,20 +1,30 @@
 <template>
-  <div class="card">
-    <h1>{{ Destination.year }}</h1>
-    <h2>{{ Destination.neighborhood }}</h2>
-    <h3>{{ Destination.sex }}</h3>
-    <h4>{{ Destination.race }}</h4>
-  </div>
+  <Bar
+    id="my-chart-id"
+    :options="chartOptions"
+    :data="chartData"
+  />
 </template>
-    
-  
-  <script setup>
-  const props = defineProps({
-    Destination: Object,
-  });
-  
-  </script>
-  
-  <style scoped>
-  
-  </style>
+
+<script>
+import { Bar } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+
+export default {
+  name: 'BarChart',
+  components: { Bar },
+  data() {
+    return {
+      chartData: {
+        labels: [ 'January', 'February', 'March' ],
+        datasets: [ { data: [40, 20, 12] } ]
+      },
+      chartOptions: {
+        responsive: true
+      }
+    }
+  }
+}
+</script>
