@@ -7,17 +7,18 @@
 </template>
 
 <script>
+
+import {ref, onMounted } from 'vue'
+const stats = ref('')
 const BASE_URL = 'https://data.cityofnewyork.us/resource/ykvb-493p.json'
 
-async function getData(BASE_URL) {
-    const response = await fetch(BASE_URL)
-    const data = await response.json();
-    let y = Array.from(data)
-    console.log(y)
-    return{y}
+async function getData() {
+    let response = await fetch(BASE_URL)
+    let data = await response.json();
+    console.log(data)
 }
-console.log(getData(BASE_URL));
-const x = getData(BASE_URL);
+getData()
+
 
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
@@ -27,11 +28,11 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 export default {
   name: 'BarChart',
   components: { Bar },
-  data() {
+  getData() {
     return {
       chartData: {
-        labels: [ 'January', 'February', 'March' ],
-        datasets: [ x.year ]
+        Boroughs: [ 'Staten Island', 'Bronx', 'Brooklyn' ],
+        datasets: [ {} ]
       },
       chartOptions: {
         responsive: true
@@ -39,6 +40,7 @@ export default {
     }
   }
 }
+// https://stackabuse.com/count-number-of-element-occurrences-in-javascript-array/
 </script>
 
 <style lang="scss" scoped>
