@@ -1,9 +1,7 @@
 <template>
-  <Bar
-    id="my-chart-id"
-    :options="chartOptions"
-    :data="chartData"
-  />
+  <div class="container">
+    <Bar v-if="loaded" :data="chartData" />
+  </div>
 </template>
 
 <script>
@@ -28,15 +26,20 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 export default {
   name: 'BarChart',
   components: { Bar },
-  getData() {
-    return {
-      chartData: {
-        Boroughs: [ 'Staten Island', 'Bronx', 'Brooklyn' ],
-        datasets: [ {} ]
-      },
-      chartOptions: {
-        responsive: true
-      }
+  data: () => ({
+    loaded: false,
+    chartData: null
+  }),
+  async mounted () {
+    this.loaded = false
+
+    try {
+      const { userlist } = await fetch(BASE_URL)
+      this.chartdata = userlist.borough
+
+      this.loaded = true
+    } catch (e) {
+      console.error(e)
     }
   }
 }
