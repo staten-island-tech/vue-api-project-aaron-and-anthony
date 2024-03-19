@@ -9,10 +9,10 @@
 </template>
 
 <script>
-const BASE_URL = 'https://data.cityofnewyork.us/resource/ykvb-493p.json'
+const BASE_URL = 'https://data.cityofnewyork.us/resource/5t4n-d72c.json'
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-
+import { ref } from 'vue'
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
@@ -26,7 +26,7 @@ export default {
       const response = await fetch(BASE_URL)
       const arrays = await response.json();
       this.chartdata = arrays
-      
+      console.log(arrays)
       this.loaded = true
     } catch (e) {
       console.error(e)
@@ -41,21 +41,24 @@ export default {
       type: String,
       default: 'label'
     },
-  },
+    
+  
   data: () => {
     return {
       chartdata: {
-        labels: ['year', 'borough', 'neighborhood', 'sex', 'race'],
+        labels: ['year', 'area', 'homeless-estimates'],
         datasets: [{
-          label: 'aids',
-          data: []}]
+          label: 'homeless',
+          data: ref([])
+        }]
         },
         chartOptions: {
           responsive: true,
         },
-        newChartArray: [],
+        newChartArray: ref([]),
         loaded: false
       }
     }
+  },
   }
 </script>
