@@ -1,11 +1,6 @@
 <template>
-    <Bar v-if="loaded" 
-    :chart-data="chartData" 
-    :chart-options="chartOptions"
-    :chart-id="chartId"
-    :dataset-id-key="datasetIdKey"
-    
-    />
+  <Bar v-if="loaded" :chart-data="chartData" :chart-options="chartOptions" :chart-id="chartId"
+    :dataset-id-key="datasetIdKey" />
 </template>
 
 <script>
@@ -17,33 +12,35 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
   name: 'BarChart',
-  components: { Bar },
- 
-  async mounted () {
-    this.loaded = false
 
-    try {
-      const response = await fetch(BASE_URL)
-      const arrays = await response.json();
-      this.chartdata = arrays
-      console.log(arrays)
-      this.loaded = true
-    } catch (e) {
-      console.error(e)
-    }
-  } ,
-  props:{
-    chartId:{
-      type:String,
+  mounted: function () {
+    this.fetchData()
+
+  },
+  props: {
+    chartId: {
+      type: String,
       default: 'bar-chart'
     },
     datasetIdKey: {
       type: String,
       default: 'label'
     },
-    
-  
-  data: () => {
+  },
+  methods: {
+    fetchData: async function () {
+      try {
+        const response = await fetch(BASE_URL)
+        const arrays = await response.json();
+        this.chartData = arrays
+        console.log(arrays)
+        this.loaded = true
+      } catch (e) {
+        console.error(e)
+      }
+    },
+  },
+  data() {
     return {
       chartdata: {
         labels: ['year', 'area', 'homeless-estimates'],
@@ -51,14 +48,13 @@ export default {
           label: 'homeless',
           data: ref([])
         }]
-        },
-        chartOptions: {
-          responsive: true,
-        },
-        newChartArray: ref([]),
-        loaded: false
-      }
+      },
+      chartOptions: {
+        responsive: true,
+      },
+      newChartArray: ref([]),
+      loaded: false
     }
-  },
   }
+}
 </script>
