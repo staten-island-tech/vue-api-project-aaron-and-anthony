@@ -1,14 +1,14 @@
 <template>
   <div>
-<BarChart />
+    <Bar/>
 </div>
 </template>
 
 <script>
-import BarChart from '@/components/BarChart.vue'
+import Bar from '@/components/BarChart.vue'
 export default {
   name: 'App',
-  components: { BarChart }
+  components: { Bar }
 }
 </script>
 <style lang="scss" scoped>
