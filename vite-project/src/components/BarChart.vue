@@ -1,61 +1,42 @@
 <template>
-  <Bar v-if="loaded" :chart-data="chartdata" :chart-options="chartOptions" :chart-id="chartId"
-    :dataset-id-key="datasetIdKey" />
+<div class="container">
+    <Bar v-if="loaded" :data="chartData" />
+  </div>
 </template>
 
 <script>
-const BASE_URL = 'https://data.cityofnewyork.us/resource/5t4n-d72c.json'
+import {ref, watch} from 'vue'
+
+const chartData = ref(null)
+
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-import { ref } from 'vue'
+
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
   name: 'BarChart',
-data() {
-    return {
-      chartdata: {
-        labels: ['year','area'],
-        datasets: [{
-          label: 'homeless',
-          data: ref([])
-        }]
-      },
-      chartOptions: {
-        responsive: true,
-      },
-      newChartArray: ref([]),
-      loaded: false
-    }
-  },
-  mounted: function () {
-    this.fetchData()
-
-  },
-  props: {
-    chartId: {
-      type: String,
-      default: 'bar-chart'
-    },
-    datasetIdKey: {
-      type: String,
-      default: 'label'
-    },
+  components: { Bar },
+  data: () => ({
+    loaded: false,
+    chartData: ref(null)
+  }),
+  async mounted () {
+    this.loaded = false
+    chartData.value = ref([])
     
-  },
-  methods: {
-    fetchData: async function () {
-      try {
-        const response = await fetch(BASE_URL)
-        const arrays = await response.json();
-        this.chartdata = arrays
-        console.log(arrays)
-        this.loaded = true
-      } catch (e) {
-        console.error(e)
-      }
-    },
-  },
-  
+  const response = await fetch ('https://data.cityofnewyork.us/resource/5t4n-d72c.json')
+  const yay = Array.from(await response.json())
+  chartData.value = yay
+
+console.log(chartData)
+    try {
+      this.chartData = chartData
+
+      this.loaded = true
+    } catch (e) {
+      console.error(e)
+    }
+  }
 }
 </script>
