@@ -1,10 +1,9 @@
 <script setup>
-import HomeGraph from '@/components/HomeGraph.vue';
-import TheWelcome from '../components/TheWelcome.vue'
+import BarChart from '../components/BarChart.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <BarChart />
   </main>
 </template>
