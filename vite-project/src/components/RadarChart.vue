@@ -5,14 +5,14 @@
   </template>
   
   <script>
+  import {Chart as ChartJS, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend} from 'chart.js'
   import { Radar } from 'vue-chartjs'
-  import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-  
-  ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-  
+
+ChartJS.register(RadialLinearScale,PointElement,LineElement,Filler,Tooltip,Legend)
+
   export default {
-    name: 'BarChart',
-    components: { Bar },
+    name: 'RadarChart',
+    components: { Radar },
     data: () => ({
       loaded: false,
       chartData: null
