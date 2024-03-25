@@ -1,14 +1,10 @@
 <template>
-<div class="container">
+  <div class="container">
     <Bar v-if="loaded" :data="chartData" />
   </div>
 </template>
 
 <script>
-import {ref, watch} from 'vue'
-
-const chartData = ref(null)
-
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
@@ -19,19 +15,47 @@ export default {
   components: { Bar },
   data: () => ({
     loaded: false,
-    chartData: ref(null)
+    chartData: null
   }),
   async mounted () {
     this.loaded = false
-    chartData.value = ref([])
-    
-  const response = await fetch ('https://data.cityofnewyork.us/resource/5t4n-d72c.json')
-  const yay = Array.from(await response.json())
-  chartData.value = yay
 
-console.log(chartData)
     try {
-      this.chartData = chartData
+      const res = await fetch('https://data.cityofnewyork.us/resource/2rb7-7eqa.json')
+      const crimes = await res.json()
+
+      let sort_by_races = {}
+      let unique_races = []
+      let crime_count_by_race = []
+
+      crimes.forEach((crime)=>{
+        let race = crime.suspect_race
+
+        if (race == undefined) race = "REDACTED"
+
+        if (!sort_by_races.hasOwnProperty(race)){
+          sort_by_races[race] = [crime]
+          unique_races.push(race)
+        }else{
+          sort_by_races[race].push(crime)
+        }
+
+      })
+      
+      for (let race of unique_races){
+        crime_count_by_race.push(sort_by_races[race].length)
+      }
+
+      this.chartData = {
+        labels: unique_races,
+        datasets: [
+          {
+            label: "Black people doing black things",
+            backgroundColor: '#f87979',
+            data: crime_count_by_race
+          }
+        ]
+      }
 
       this.loaded = true
     } catch (e) {
@@ -40,3 +64,10 @@ console.log(chartData)
   }
 }
 </script>
+
+<style scoped>
+.container{
+  height: 90vh;
+  width: 70vw;
+}
+</style>
