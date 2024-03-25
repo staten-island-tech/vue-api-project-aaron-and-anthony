@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="container">
       <Radar v-if="loaded" :data="chartData" />
     </div>
@@ -11,8 +11,8 @@
   ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
   
   export default {
-    name: 'BarChart',
-    components: { Bar },
+    name: 'RadarChar',
+    components: { Radar },
     data: () => ({
       loaded: false,
       chartData: null
@@ -70,4 +70,18 @@
     height: 90vh;
     width: 70vw;
   }
+  </style> -->
+
+  <template>
+    <div>
+  
+    </div>
+  </template>
+  
+  <script setup>
+  
+  </script>
+  
+  <style lang="scss" scoped>
+  
   </style>
