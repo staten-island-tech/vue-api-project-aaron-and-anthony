@@ -57,7 +57,7 @@ ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend)
           labels: unique_races,
           datasets: [
             {
-              label: "Black people doing black things",
+              label: "Domestic Violence",
               backgroundColor: '#f87979',
               data: crime_count_by_race
             }
