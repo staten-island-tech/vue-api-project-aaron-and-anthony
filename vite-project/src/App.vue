@@ -6,9 +6,15 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <div class="wrapper">
       <nav>
+<<<<<<< HEAD
         <RouterLink to="/">Suspect Race</RouterLink>
         <RouterLink to="/about">Borough Frequency</RouterLink>
         <RouterLink to="/polar">Victim Race</RouterLink>
+=======
+        <RouterLink to="/">Bar</RouterLink>
+        <RouterLink to="/about">Radar</RouterLink>
+        <RouterLink to="/polar">Polar</RouterLink>
+>>>>>>> anthony
       </nav>
     </div>
   </header>
