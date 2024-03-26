@@ -58,7 +58,7 @@ ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend)
           datasets: [
             {
               label: "Domestic Violence",
-              backgroundColor: '#f87979',
+              backgroundColor: ['#a37fe5', '#68aba9', '#d89eb8', '#2c4b81'],
               data: crime_count_by_race
             }
           ]
