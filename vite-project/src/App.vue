@@ -71,7 +71,7 @@ nav a:first-of-type {
 
   nav {
     text-align: left;
-    margin-left: -1rem;
+    margin-left: -11rem;
     font-size: 1rem;
 
     padding: 1rem 0;
