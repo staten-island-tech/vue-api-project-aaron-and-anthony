@@ -36,7 +36,7 @@ ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend)
         let crime_count_by_race = []
   
         crimes.forEach((crime)=>{
-          let race = crime.suspect_race
+          let race = crime.victim_race_dir
   
           if (race == undefined) race = "REDACTED"
   
