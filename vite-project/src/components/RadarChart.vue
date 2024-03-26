@@ -29,7 +29,7 @@ ChartJS.register(RadialLinearScale,PointElement,LineElement,Filler,Tooltip,Legen
         let crime_count_by_race = []
   
         crimes.forEach((crime)=>{
-          let race = crime.suspect_race
+          let race = crime.borough_name
   
           if (race == undefined) race = "REDACTED"
   
