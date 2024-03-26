@@ -10,7 +10,7 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: rgba(0, 66, 189, 0.575);
   transition: 0.4s;
   padding: 3px;
   font-size: 30px;
@@ -18,7 +18,7 @@ a,
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsla(207, 100%, 37%, 0.2);
   }
 }
 
