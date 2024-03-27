@@ -51,7 +51,7 @@ ChartJS.register(RadialLinearScale,PointElement,LineElement,Filler,Tooltip,Legen
           datasets: [
             {
               label: "Domestic Violence",
-              backgroundColor: ['rgba(184,129,191,0.2)'],
+              backgroundColor: ['rgba(184,129,191,0.4)'],
               data: crime_count_by_race
             }
           ]
